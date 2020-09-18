@@ -3,13 +3,26 @@ import socket
 import subprocess
 import sys
 from datetime import datetime
+import getopt
+
+#parse options and arguments
+
+opt, arg = getopt.getopt(sys.argv[1:],'h:p:',['host=','ports='])
+
+for co,ca in opt:
+    if co in ('-h','-host'):
+        remoteServer = ca
+    elif co in ('-p','--ports'):
+        portsInput = ca
+
 
 # Clear the screen
 subprocess.call('clear', shell=True)
 
 # Ask for input
-remoteServer    = input("Enter a remote host to scan: ")
-portsInput        = input("Enter ports to scan: ")
+
+if not remoteServer: remoteServer = input("Enter a remote host to scan: ")
+if not portsInput: portsInput        = input("Enter ports to scan: ")
 remoteServerIP  = socket.gethostbyname(remoteServer)
 portsStr = list(portsInput.split(","))
 ports = []
