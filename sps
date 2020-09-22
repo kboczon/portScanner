@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 sps.py $@
+python3 /usr/local/sbin/sps.py $@
